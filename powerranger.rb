@@ -15,6 +15,22 @@ def fight_scene
 	riddler.cause_mayhem(bob)
 end
 
+module Punch
+	def punch(person)
+		puts "You just punched #{person.name}!"
+		person.run
+		person.scream
+		if @strength > 5
+			puts "#{person.name} was somersaulted into the air!"
+			person.caffeine_level -= @strength
+			puts "#{person.name}'s caffeine level is now #{person.caffeine_level}."
+		end
+		@caffeine_level -= 1
+		puts "Your new caffeine level is #{@caffeine_level}."
+	end
+end
+
+
 class Person
 	attr_accessor :name
 	attr_accessor :caffeine_level
@@ -42,6 +58,7 @@ end
 
 class PowerRanger < Person
 	#deleted accessor for strength and color
+	include Punch
 
 	def initialize(name, caffeine_level=0, strength, color)
 		super(name, caffeine_level)
@@ -49,18 +66,18 @@ class PowerRanger < Person
 		@color = color
 	end
 
-	def punch(person)
-		puts "You just punched #{person.name}!"
-		person.run
-		person.scream
-		if @strength > 5
-			puts "#{person.name} was somersaulted into the air!"
-			person.caffeine_level -= @strength
-			puts "#{person.name}'s caffeine level is now #{person.caffeine_level}."
-		end
-		@caffeine_level -= 1
-		puts "Your new caffeine level is #{@caffeine_level}."			
-	end
+	# def punch(person)
+	# 	puts "You just punched #{person.name}!"
+	# 	person.run
+	# 	person.scream
+	# 	if @strength > 5
+	# 		puts "#{person.name} was somersaulted into the air!"
+	# 		person.caffeine_level -= @strength
+	# 		puts "#{person.name}'s caffeine level is now #{person.caffeine_level}."
+	# 	end
+	# 	@caffeine_level -= 1
+	# 	puts "Your new caffeine level is #{@caffeine_level}."			
+	# end
 
 	def rest
 		@caffeine_level += 2
@@ -81,6 +98,8 @@ class PowerRanger < Person
 end
 
 class EvilNinja < Person
+	
+	include Punch
 
 	def initialize(name, caffeine_level=0, strength, evilness)
 		super(name, caffeine_level)
@@ -88,18 +107,18 @@ class EvilNinja < Person
 		@evilness = evilness
 	end
 
-	def punch(person)
-		puts "You just punched #{person.name}!"
-		person.run
-		person.scream
-		if @strength > 5
-			puts "#{person.name} was somersaulted into the air!"
-			person.caffeine_level -= @strength
-			puts "#{person.name}'s caffeine level is now #{person.caffeine_level}."
-		end
-		@caffeine_level -= 1
-		puts "Your new caffeine level is #{@caffeine_level}."
-	end
+	# def punch(person)
+	# 	puts "You just punched #{person.name}!"
+	# 	person.run
+	# 	person.scream
+	# 	if @strength > 5
+	# 		puts "#{person.name} was somersaulted into the air!"
+	# 		person.caffeine_level -= @strength
+	# 		puts "#{person.name}'s caffeine level is now #{person.caffeine_level}."
+	# 	end
+	# 	@caffeine_level -= 1
+	# 	puts "Your new caffeine level is #{@caffeine_level}."
+	# end
 
 	def cause_mayhem(person)
 		puts "You are causing mayhem! Havoc!!!"
